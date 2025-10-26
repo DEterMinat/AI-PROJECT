@@ -136,6 +136,7 @@ models/*.pth
 models/*.h5
 models/*.pkl
 models/*.joblib
+models/*.safetensors
 
 # Data files
 data/raw/
