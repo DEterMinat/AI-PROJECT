@@ -1,0 +1,178 @@
+{
+  "name": "Medical QA Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "medical-qa",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "medical-qa"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Extract question from webhook\nconst question = $input.first().json.question || $input.first().json.body.question;\nconst userId = $input.first().json.user_id || $input.first().json.body.user_id || 'anonymous';\n\nconsole.log('📝 Processing question:', question);\nconsole.log('👤 User ID:', userId);\n\n// Validate question\nif (!question || question.trim() === '') {\n  return [{\n    json: {\n      error: 'Question is required',\n      success: false\n    }\n  }];\n}\n\n// Return formatted data\nreturn [{\n  json: {\n    question: question.trim(),\n    user_id: userId,\n    timestamp: new Date().toISOString(),\n    workflow_step: 'validation'\n  }\n}];"
+      },
+      "id": "function-validate",
+      "name": "Validate Input",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:8000/langchain/query",
+        "method": "POST",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "question",
+              "value": "={{ $json.question }}"
+            },
+            {
+              "name": "user_id",
+              "value": "={{ $json.user_id }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "http-langchain",
+      "name": "Call Langchain",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Process Langchain response\nconst langchainResponse = $input.first().json;\n\nconsole.log('🧠 Langchain response received');\n\n// Format response\nconst formattedResponse = {\n  success: langchainResponse.success || true,\n  answer: langchainResponse.answer || 'No answer generated',\n  sources: langchainResponse.sources || [],\n  processing_time: langchainResponse.processing_time || 0,\n  method: 'n8n_workflow',\n  workflow_step: 'langchain_completed',\n  timestamp: new Date().toISOString(),\n  disclaimer: '⚕️ This is general health information only. Always consult qualified healthcare professionals for medical advice, diagnosis, or treatment.',\n  n8n_workflow: {\n    workflow_id: $workflow.id,\n    execution_id: $execution.id,\n    workflow_name: 'Medical QA Workflow'\n  }\n};\n\nreturn [{ json: formattedResponse }];"
+      },
+      "id": "function-format",
+      "name": "Format Response",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json, null, 2) }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "webhook-response",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Error handler\nconst error = $input.first().json.error || 'Unknown error occurred';\n\nconsole.error('❌ Workflow error:', error);\n\nreturn [{\n  json: {\n    success: false,\n    answer: 'I apologize, but I encountered an error processing your question. Please try again or consult a medical professional.',\n    error: error,\n    method: 'n8n_workflow',\n    workflow_step: 'error_handler',\n    timestamp: new Date().toISOString(),\n    n8n_workflow: {\n      workflow_id: $workflow.id,\n      execution_id: $execution.id\n    }\n  }\n}];"
+      },
+      "id": "function-error",
+      "name": "Error Handler",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [850, 500]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Validate Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Input": {
+      "main": [
+        [
+          {
+            "node": "Call Langchain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Langchain": {
+      "main": [
+        [
+          {
+            "node": "Format Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Response": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Handler": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "medical",
+      "id": "1"
+    },
+    {
+      "name": "ai",
+      "id": "2"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-07T00:00:00.000Z",
+  "versionId": "1"
+}

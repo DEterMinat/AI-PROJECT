@@ -1,0 +1,16 @@
+{
+  "download_timestamp": "2025-10-07T23:32:20.722224",
+  "total_datasets": 1,
+  "total_samples": 112165,
+  "datasets": {
+    "chatdoctor": {
+      "samples": 112165,
+      "file": "chatdoctor_20251007_233204.json"
+    }
+  },
+  "files": {
+    "combined_json": "data\\raw\\medical_datasets_combined_20251007_233204.json",
+    "combined_csv": "data\\raw\\medical_datasets_combined_20251007_233204.csv",
+    "excel_report": "data\\exports\\dataset_summary_20251007_233204.csv"
+  }
+}

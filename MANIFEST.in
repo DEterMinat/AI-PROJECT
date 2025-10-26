@@ -1,0 +1,15 @@
+include README.md
+include LICENSE
+include config/*.json
+include config/*.txt
+include docs/*.md
+include docker-compose.yml
+include Dockerfile
+include .dockerignore
+recursive-include data *.db
+recursive-include models *
+recursive-include n8n *.json
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .pytest_cache
+global-exclude .mypy_cache

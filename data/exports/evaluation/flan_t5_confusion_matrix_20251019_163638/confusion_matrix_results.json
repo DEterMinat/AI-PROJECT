@@ -1,0 +1,802 @@
+{
+  "model_info": {
+    "path": "models\\flan_t5_diagnosis_20251018_205708",
+    "model_type": "FLAN-T5",
+    "total_parameters": 247577856,
+    "trainable_parameters": 247577856,
+    "size_mb": 944.4345703125,
+    "device": "cuda",
+    "pytorch_version": "2.5.1+cu121"
+  },
+  "classification_metrics": {
+    "overall_accuracy": 0.58,
+    "total_predictions": 50,
+    "correct_predictions": 29,
+    "avg_inference_time": 0.07937416076660156
+  },
+  "confusion_matrix_data": {
+    "labels": [
+      "Cardiovascular",
+      "Emergency",
+      "Endocrine",
+      "Gastrointestinal",
+      "Infection",
+      "Mental_Health",
+      "Musculoskeletal",
+      "Neurological",
+      "Other",
+      "Preventive",
+      "Respiratory"
+    ],
+    "confusion_matrix": [
+      [
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        3,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        2,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        4
+      ]
+    ],
+    "y_true": [
+      "Infection",
+      "Infection",
+      "Infection",
+      "Infection",
+      "Infection",
+      "Cardiovascular",
+      "Cardiovascular",
+      "Cardiovascular",
+      "Cardiovascular",
+      "Cardiovascular",
+      "Respiratory",
+      "Respiratory",
+      "Respiratory",
+      "Respiratory",
+      "Respiratory",
+      "Neurological",
+      "Neurological",
+      "Neurological",
+      "Neurological",
+      "Neurological",
+      "Gastrointestinal",
+      "Gastrointestinal",
+      "Gastrointestinal",
+      "Gastrointestinal",
+      "Gastrointestinal",
+      "Musculoskeletal",
+      "Musculoskeletal",
+      "Musculoskeletal",
+      "Musculoskeletal",
+      "Musculoskeletal",
+      "Endocrine",
+      "Endocrine",
+      "Endocrine",
+      "Endocrine",
+      "Endocrine",
+      "Mental_Health",
+      "Mental_Health",
+      "Mental_Health",
+      "Mental_Health",
+      "Mental_Health",
+      "Emergency",
+      "Emergency",
+      "Emergency",
+      "Emergency",
+      "Emergency",
+      "Preventive",
+      "Preventive",
+      "Preventive",
+      "Preventive",
+      "Preventive"
+    ],
+    "y_pred": [
+      "Infection",
+      "Infection",
+      "Infection",
+      "Infection",
+      "Infection",
+      "Respiratory",
+      "Cardiovascular",
+      "Cardiovascular",
+      "Cardiovascular",
+      "Cardiovascular",
+      "Respiratory",
+      "Respiratory",
+      "Respiratory",
+      "Mental_Health",
+      "Respiratory",
+      "Neurological",
+      "Neurological",
+      "Neurological",
+      "Cardiovascular",
+      "Cardiovascular",
+      "Other",
+      "Infection",
+      "Other",
+      "Other",
+      "Other",
+      "Musculoskeletal",
+      "Musculoskeletal",
+      "Musculoskeletal",
+      "Musculoskeletal",
+      "Other",
+      "Endocrine",
+      "Endocrine",
+      "Endocrine",
+      "Cardiovascular",
+      "Endocrine",
+      "Mental_Health",
+      "Mental_Health",
+      "Mental_Health",
+      "Mental_Health",
+      "Mental_Health",
+      "Cardiovascular",
+      "Infection",
+      "Cardiovascular",
+      "Infection",
+      "Cardiovascular",
+      "Infection",
+      "Other",
+      "Endocrine",
+      "Infection",
+      "Respiratory"
+    ]
+  },
+  "test_results": [
+    {
+      "question": "I have fever, cough, and sore throat",
+      "response": "infection",
+      "expected_category": "Infection",
+      "predicted_category": "Infection",
+      "is_correct": true,
+      "inference_time": 0.3406391143798828,
+      "timestamp": "2025-10-19T16:36:39.314071"
+    },
+    {
+      "question": "What are symptoms of pneumonia?",
+      "response": "pneumonia",
+      "expected_category": "Infection",
+      "predicted_category": "Infection",
+      "is_correct": true,
+      "inference_time": 0.06078934669494629,
+      "timestamp": "2025-10-19T16:36:39.376376"
+    },
+    {
+      "question": "How to treat viral infection?",
+      "response": "infection",
+      "expected_category": "Infection",
+      "predicted_category": "Infection",
+      "is_correct": true,
+      "inference_time": 0.06469082832336426,
+      "timestamp": "2025-10-19T16:36:39.441573"
+    },
+    {
+      "question": "Bacterial vs viral infection differences",
+      "response": "infection",
+      "expected_category": "Infection",
+      "predicted_category": "Infection",
+      "is_correct": true,
+      "inference_time": 0.0620424747467041,
+      "timestamp": "2025-10-19T16:36:39.504644"
+    },
+    {
+      "question": "When to use antibiotics for infection?",
+      "response": "infection",
+      "expected_category": "Infection",
+      "predicted_category": "Infection",
+      "is_correct": true,
+      "inference_time": 0.06982254981994629,
+      "timestamp": "2025-10-19T16:36:39.575466"
+    },
+    {
+      "question": "I have chest pain and shortness of breath",
+      "response": "bronchitis",
+      "expected_category": "Cardiovascular",
+      "predicted_category": "Respiratory",
+      "is_correct": false,
+      "inference_time": 0.19705462455749512,
+      "timestamp": "2025-10-19T16:36:39.772521"
+    },
+    {
+      "question": "What causes high blood pressure?",
+      "response": "hypertension",
+      "expected_category": "Cardiovascular",
+      "predicted_category": "Cardiovascular",
+      "is_correct": true,
+      "inference_time": 0.09067058563232422,
+      "timestamp": "2025-10-19T16:36:39.863191"
+    },
+    {
+      "question": "Signs of heart attack in women",
+      "response": "heart attack",
+      "expected_category": "Cardiovascular",
+      "predicted_category": "Cardiovascular",
+      "is_correct": true,
+      "inference_time": 0.08129429817199707,
+      "timestamp": "2025-10-19T16:36:39.945484"
+    },
+    {
+      "question": "How to prevent stroke?",
+      "response": "stroke",
+      "expected_category": "Cardiovascular",
+      "predicted_category": "Cardiovascular",
+      "is_correct": true,
+      "inference_time": 0.057987213134765625,
+      "timestamp": "2025-10-19T16:36:40.003472"
+    },
+    {
+      "question": "Managing hypertension naturally",
+      "response": "hypertension",
+      "expected_category": "Cardiovascular",
+      "predicted_category": "Cardiovascular",
+      "is_correct": true,
+      "inference_time": 0.07615494728088379,
+      "timestamp": "2025-10-19T16:36:40.079627"
+    },
+    {
+      "question": "How to control asthma attacks?",
+      "response": "asthma",
+      "expected_category": "Respiratory",
+      "predicted_category": "Respiratory",
+      "is_correct": true,
+      "inference_time": 0.053563833236694336,
+      "timestamp": "2025-10-19T16:36:40.134228"
+    },
+    {
+      "question": "What is COPD treatment?",
+      "response": "copd",
+      "expected_category": "Respiratory",
+      "predicted_category": "Respiratory",
+      "is_correct": true,
+      "inference_time": 0.0742185115814209,
+      "timestamp": "2025-10-19T16:36:40.208447"
+    },
+    {
+      "question": "Chronic cough causes and treatment",
+      "response": "bronchitis",
+      "expected_category": "Respiratory",
+      "predicted_category": "Respiratory",
+      "is_correct": true,
+      "inference_time": 0.1301417350769043,
+      "timestamp": "2025-10-19T16:36:40.338588"
+    },
+    {
+      "question": "Breathing difficulty at night",
+      "response": "anxiety",
+      "expected_category": "Respiratory",
+      "predicted_category": "Mental_Health",
+      "is_correct": false,
+      "inference_time": 0.0525815486907959,
+      "timestamp": "2025-10-19T16:36:40.391170"
+    },
+    {
+      "question": "Bronchitis vs pneumonia differences",
+      "response": "bronchitis",
+      "expected_category": "Respiratory",
+      "predicted_category": "Respiratory",
+      "is_correct": true,
+      "inference_time": 0.1608121395111084,
+      "timestamp": "2025-10-19T16:36:40.551982"
+    },
+    {
+      "question": "Severe headache with stiff neck",
+      "response": "headache",
+      "expected_category": "Neurological",
+      "predicted_category": "Neurological",
+      "is_correct": true,
+      "inference_time": 0.05076313018798828,
+      "timestamp": "2025-10-19T16:36:40.602745"
+    },
+    {
+      "question": "What triggers migraine attacks?",
+      "response": "migraine",
+      "expected_category": "Neurological",
+      "predicted_category": "Neurological",
+      "is_correct": true,
+      "inference_time": 0.05262947082519531,
+      "timestamp": "2025-10-19T16:36:40.656482"
+    },
+    {
+      "question": "How to manage epilepsy seizures?",
+      "response": "epilepsy",
+      "expected_category": "Neurological",
+      "predicted_category": "Neurological",
+      "is_correct": true,
+      "inference_time": 0.0900888442993164,
+      "timestamp": "2025-10-19T16:36:40.746571"
+    },
+    {
+      "question": "Dizziness and balance problems",
+      "response": "stroke",
+      "expected_category": "Neurological",
+      "predicted_category": "Cardiovascular",
+      "is_correct": false,
+      "inference_time": 0.05704164505004883,
+      "timestamp": "2025-10-19T16:36:40.803612"
+    },
+    {
+      "question": "Early signs of stroke recognition",
+      "response": "stroke",
+      "expected_category": "Neurological",
+      "predicted_category": "Cardiovascular",
+      "is_correct": false,
+      "inference_time": 0.05588269233703613,
+      "timestamp": "2025-10-19T16:36:40.859495"
+    },
+    {
+      "question": "Persistent nausea and vomiting",
+      "response": "ulcer",
+      "expected_category": "Gastrointestinal",
+      "predicted_category": "Other",
+      "is_correct": false,
+      "inference_time": 0.052983760833740234,
+      "timestamp": "2025-10-19T16:36:40.912479"
+    },
+    {
+      "question": "Chronic diarrhea causes",
+      "response": "infection",
+      "expected_category": "Gastrointestinal",
+      "predicted_category": "Infection",
+      "is_correct": false,
+      "inference_time": 0.05423927307128906,
+      "timestamp": "2025-10-19T16:36:40.966718"
+    },
+    {
+      "question": "Stomach pain after eating",
+      "response": "gastritis",
+      "expected_category": "Gastrointestinal",
+      "predicted_category": "Other",
+      "is_correct": false,
+      "inference_time": 0.12766504287719727,
+      "timestamp": "2025-10-19T16:36:41.094383"
+    },
+    {
+      "question": "How to treat acid reflux?",
+      "response": "gastritis",
+      "expected_category": "Gastrointestinal",
+      "predicted_category": "Other",
+      "is_correct": false,
+      "inference_time": 0.10739922523498535,
+      "timestamp": "2025-10-19T16:36:41.201783"
+    },
+    {
+      "question": "Inflammatory bowel disease symptoms",
+      "response": "colitis",
+      "expected_category": "Gastrointestinal",
+      "predicted_category": "Other",
+      "is_correct": false,
+      "inference_time": 0.07469034194946289,
+      "timestamp": "2025-10-19T16:36:41.277475"
+    },
+    {
+      "question": "Joint pain and stiffness in morning",
+      "response": "arthritis",
+      "expected_category": "Musculoskeletal",
+      "predicted_category": "Musculoskeletal",
+      "is_correct": true,
+      "inference_time": 0.05090188980102539,
+      "timestamp": "2025-10-19T16:36:41.328377"
+    },
+    {
+      "question": "Lower back pain treatment options",
+      "response": "arthritis",
+      "expected_category": "Musculoskeletal",
+      "predicted_category": "Musculoskeletal",
+      "is_correct": true,
+      "inference_time": 0.05398678779602051,
+      "timestamp": "2025-10-19T16:36:41.382364"
+    },
+    {
+      "question": "What is rheumatoid arthritis?",
+      "response": "arthritis",
+      "expected_category": "Musculoskeletal",
+      "predicted_category": "Musculoskeletal",
+      "is_correct": true,
+      "inference_time": 0.05976080894470215,
+      "timestamp": "2025-10-19T16:36:41.443469"
+    },
+    {
+      "question": "How to prevent osteoporosis?",
+      "response": "osteoporosis",
+      "expected_category": "Musculoskeletal",
+      "predicted_category": "Musculoskeletal",
+      "is_correct": true,
+      "inference_time": 0.12726449966430664,
+      "timestamp": "2025-10-19T16:36:41.570733"
+    },
+    {
+      "question": "Muscle cramps and weakness",
+      "response": "fibromyalgia",
+      "expected_category": "Musculoskeletal",
+      "predicted_category": "Other",
+      "is_correct": false,
+      "inference_time": 0.1616213321685791,
+      "timestamp": "2025-10-19T16:36:41.732354"
+    },
+    {
+      "question": "Type 2 diabetes management",
+      "response": "diabetes",
+      "expected_category": "Endocrine",
+      "predicted_category": "Endocrine",
+      "is_correct": true,
+      "inference_time": 0.05322980880737305,
+      "timestamp": "2025-10-19T16:36:41.785584"
+    },
+    {
+      "question": "Thyroid disorder symptoms",
+      "response": "thyroid",
+      "expected_category": "Endocrine",
+      "predicted_category": "Endocrine",
+      "is_correct": true,
+      "inference_time": 0.049926042556762695,
+      "timestamp": "2025-10-19T16:36:41.835510"
+    },
+    {
+      "question": "High blood sugar treatment",
+      "response": "diabetes",
+      "expected_category": "Endocrine",
+      "predicted_category": "Endocrine",
+      "is_correct": true,
+      "inference_time": 0.05408215522766113,
+      "timestamp": "2025-10-19T16:36:41.889592"
+    },
+    {
+      "question": "Insulin resistance prevention",
+      "response": "hypertension",
+      "expected_category": "Endocrine",
+      "predicted_category": "Cardiovascular",
+      "is_correct": false,
+      "inference_time": 0.07006502151489258,
+      "timestamp": "2025-10-19T16:36:41.959657"
+    },
+    {
+      "question": "Hormonal imbalance signs",
+      "response": "thyroid",
+      "expected_category": "Endocrine",
+      "predicted_category": "Endocrine",
+      "is_correct": true,
+      "inference_time": 0.05268049240112305,
+      "timestamp": "2025-10-19T16:36:42.012338"
+    },
+    {
+      "question": "Clinical depression symptoms",
+      "response": "depression",
+      "expected_category": "Mental_Health",
+      "predicted_category": "Mental_Health",
+      "is_correct": true,
+      "inference_time": 0.05000638961791992,
+      "timestamp": "2025-10-19T16:36:42.062344"
+    },
+    {
+      "question": "How to manage anxiety attacks?",
+      "response": "anxiety",
+      "expected_category": "Mental_Health",
+      "predicted_category": "Mental_Health",
+      "is_correct": true,
+      "inference_time": 0.056056976318359375,
+      "timestamp": "2025-10-19T16:36:42.118401"
+    },
+    {
+      "question": "PTSD treatment approaches",
+      "response": "PTSD",
+      "expected_category": "Mental_Health",
+      "predicted_category": "Mental_Health",
+      "is_correct": true,
+      "inference_time": 0.07152581214904785,
+      "timestamp": "2025-10-19T16:36:42.189927"
+    },
+    {
+      "question": "Bipolar disorder management",
+      "response": "depression",
+      "expected_category": "Mental_Health",
+      "predicted_category": "Mental_Health",
+      "is_correct": true,
+      "inference_time": 0.06052422523498535,
+      "timestamp": "2025-10-19T16:36:42.250451"
+    },
+    {
+      "question": "Chronic stress health effects",
+      "response": "depression",
+      "expected_category": "Mental_Health",
+      "predicted_category": "Mental_Health",
+      "is_correct": true,
+      "inference_time": 0.05209612846374512,
+      "timestamp": "2025-10-19T16:36:42.302548"
+    },
+    {
+      "question": "Severe chest pain call 911?",
+      "response": "heart attack",
+      "expected_category": "Emergency",
+      "predicted_category": "Cardiovascular",
+      "is_correct": false,
+      "inference_time": 0.0729219913482666,
+      "timestamp": "2025-10-19T16:36:42.375469"
+    },
+    {
+      "question": "Someone is unconscious what to do?",
+      "response": "infection",
+      "expected_category": "Emergency",
+      "predicted_category": "Infection",
+      "is_correct": false,
+      "inference_time": 0.0509946346282959,
+      "timestamp": "2025-10-19T16:36:42.426464"
+    },
+    {
+      "question": "Signs of life threatening emergency",
+      "response": "heart attack",
+      "expected_category": "Emergency",
+      "predicted_category": "Cardiovascular",
+      "is_correct": false,
+      "inference_time": 0.06867766380310059,
+      "timestamp": "2025-10-19T16:36:42.496187"
+    },
+    {
+      "question": "When to go to hospital urgently?",
+      "response": "infection",
+      "expected_category": "Emergency",
+      "predicted_category": "Infection",
+      "is_correct": false,
+      "inference_time": 0.05136466026306152,
+      "timestamp": "2025-10-19T16:36:42.547552"
+    },
+    {
+      "question": "Severe allergic reaction treatment",
+      "response": "hypertension",
+      "expected_category": "Emergency",
+      "predicted_category": "Cardiovascular",
+      "is_correct": false,
+      "inference_time": 0.06873035430908203,
+      "timestamp": "2025-10-19T16:36:42.616282"
+    },
+    {
+      "question": "Adult vaccination schedule",
+      "response": "infection",
+      "expected_category": "Preventive",
+      "predicted_category": "Infection",
+      "is_correct": false,
+      "inference_time": 0.050994873046875,
+      "timestamp": "2025-10-19T16:36:42.667277"
+    },
+    {
+      "question": "Cancer screening guidelines",
+      "response": "cancer",
+      "expected_category": "Preventive",
+      "predicted_category": "Other",
+      "is_correct": false,
+      "inference_time": 0.05201077461242676,
+      "timestamp": "2025-10-19T16:36:42.719288"
+    },
+    {
+      "question": "Healthy lifestyle habits",
+      "response": "diabetes",
+      "expected_category": "Preventive",
+      "predicted_category": "Endocrine",
+      "is_correct": false,
+      "inference_time": 0.05065798759460449,
+      "timestamp": "2025-10-19T16:36:42.769946"
+    },
+    {
+      "question": "Regular checkup importance",
+      "response": "infection",
+      "expected_category": "Preventive",
+      "predicted_category": "Infection",
+      "is_correct": false,
+      "inference_time": 0.053583621978759766,
+      "timestamp": "2025-10-19T16:36:42.823530"
+    },
+    {
+      "question": "Disease prevention strategies",
+      "response": "bronchitis",
+      "expected_category": "Preventive",
+      "predicted_category": "Respiratory",
+      "is_correct": false,
+      "inference_time": 0.1291959285736084,
+      "timestamp": "2025-10-19T16:36:42.952725"
+    }
+  ],
+  "category_performance": {
+    "Cardiovascular": {
+      "precision": 0.4,
+      "recall": 0.8,
+      "f1_score": 0.5333333333333333,
+      "support": 5
+    },
+    "Emergency": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "support": 5
+    },
+    "Endocrine": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1_score": 0.8,
+      "support": 5
+    },
+    "Gastrointestinal": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "support": 5
+    },
+    "Infection": {
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1_score": 0.6666666666666666,
+      "support": 5
+    },
+    "Mental_Health": {
+      "precision": 0.8333333333333334,
+      "recall": 1.0,
+      "f1_score": 0.9090909090909091,
+      "support": 5
+    },
+    "Musculoskeletal": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1_score": 0.8888888888888888,
+      "support": 5
+    },
+    "Neurological": {
+      "precision": 1.0,
+      "recall": 0.6,
+      "f1_score": 0.75,
+      "support": 5
+    },
+    "Other": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "support": 0
+    },
+    "Preventive": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "support": 5
+    },
+    "Respiratory": {
+      "precision": 0.6666666666666666,
+      "recall": 0.8,
+      "f1_score": 0.7272727272727273,
+      "support": 5
+    }
+  },
+  "timestamp": "2025-10-19T16:36:38.170218"
+}

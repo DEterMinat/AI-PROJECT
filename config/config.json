@@ -1,0 +1,11 @@
+{
+  "model_path": "models\\t5_diagnosis_20251008_111522",
+  "model_type": "t5-small",
+  "data_path": "./data/processed",
+  "api_host": "0.0.0.0",
+  "api_port": 5000,
+  "max_length": 256,
+  "temperature": 0.7,
+  "num_beams": 5,
+  "diagnosis_focused": true
+}
