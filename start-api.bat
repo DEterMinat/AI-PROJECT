@@ -1,4 +1,5 @@
 @echo off
+cd /d "%~dp0"
 title T5-SMALL Medical API Server
 color 0A
 
@@ -8,17 +9,40 @@ echo   T5-SMALL MEDICAL API SERVER
 echo ========================================
 echo.
 
-REM Check if Python virtual environment exists
-if not exist ".venv\Scripts\python.exe" (
-    echo [ERROR] Virtual environment not found!
-    echo Please run: python -m venv .venv
-    echo Then activate and install dependencies
-    pause
-    exit /b 1
+REM Check for Conda environment
+where conda >nul 2>&1
+if %errorlevel% neq 0 (
+    if exist "C:\Users\tanak\anaconda3\Scripts\conda.exe" (
+        set "PATH=%PATH%;C:\Users\tanak\anaconda3;C:\Users\tanak\anaconda3\Scripts;C:\Users\tanak\anaconda3\Library\bin"
+    )
 )
 
-echo [INFO] Activating Python virtual environment...
-call .venv\Scripts\activate.bat
+call conda activate .\.conda >nul 2>&1
+if %errorlevel% neq 0 (
+    if exist "C:\Users\tanak\anaconda3\Scripts\activate.bat" (
+        call "C:\Users\tanak\anaconda3\Scripts\activate.bat" "%~dp0.conda" >nul 2>&1
+    )
+)
+
+python -c "import sys; exit(0 if '.conda' in sys.prefix or 'medical-ai' in sys.prefix else 1)" >nul 2>&1
+if %errorlevel% equ 0 (
+    echo [INFO] Activated Conda environment '.conda'
+    goto :START_SERVER
+)
+
+REM Check if Python virtual environment exists
+if exist ".venv\Scripts\python.exe" (
+    echo [INFO] Activating Python virtual environment...
+    call .venv\Scripts\activate.bat
+    goto :START_SERVER
+)
+
+echo [ERROR] No suitable Python environment found!
+echo Please run SETUP_CONDA.bat or create a venv.
+pause
+exit /b 1
+
+:START_SERVER
 
 echo.
 echo ========================================

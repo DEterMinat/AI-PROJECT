@@ -9,14 +9,21 @@ Usage:
     python run_ml_pipeline.py <pipeline_step> [options]
 
 Pipeline Steps:
-    data_collection     - Collect and prepare medical data
-    data_cleaning       - Clean and preprocess data
-    eda                 - Exploratory data analysis
-    feature_engineering - Feature engineering and selection
-    data_splitting      - Split data for training/validation/testing
-    model_selection     - Compare different models
-    model_training      - Train the selected model
-    model_evaluation    - Evaluate model performance
+    data_collection           - Collect and prepare medical data
+    data_cleaning             - Clean and preprocess data
+    eda                       - Exploratory data analysis
+    feature_engineering       - Feature engineering
+    feature_selection         - Feature selection
+    data_splitting            - Split data
+    model_selection           - Compare models
+    train_t5                  - Train T5 model
+    train_flan_t5             - Train FLAN-T5 model
+    evaluate_model            - Evaluate model
+    evaluate_flan_t5          - Evaluate FLAN-T5
+    evaluate_confusion_matrix - Generate confusion matrix
+    hyperparameter_tuning     - Tune hyperparameters
+    monitoring                - Monitor model
+    test_interactive          - Interactive testing
 
 Options:
     --config FILE       Configuration file (default: config/config.json)
@@ -39,10 +46,17 @@ PIPELINE_STEPS = {
     "data_cleaning": "src.ml_pipeline.data_cleaning",
     "eda": "src.ml_pipeline.eda",
     "feature_engineering": "src.ml_pipeline.feature_engineering",
+    "feature_selection": "src.ml_pipeline.feature_selection",
     "data_splitting": "src.ml_pipeline.data_splitting",
     "model_selection": "src.ml_pipeline.model_selection",
-    "model_training": "src.ml_pipeline.model_training",
-    "model_evaluation": "src.ml_pipeline.model_evaluation",
+    "train_t5": "src.ml_pipeline.train_t5",
+    "train_flan_t5": "src.ml_pipeline.train_flan_t5",
+    "evaluate_model": "src.ml_pipeline.evaluate_model",
+    "evaluate_flan_t5": "src.ml_pipeline.evaluate_flan_t5",
+    "evaluate_confusion_matrix": "src.ml_pipeline.evaluate_confusion_matrix",
+    "hyperparameter_tuning": "src.ml_pipeline.hyperparameter_tuning",
+    "monitoring": "src.ml_pipeline.monitoring",
+    "test_interactive": "src.ml_pipeline.test_t5_interactive",
 }
 
 
@@ -79,7 +93,15 @@ def run_pipeline_step(step_name: str, config: Dict[str, Any], verbose: bool = Fa
         if hasattr(module, 'main'):
             if verbose:
                 print(f"🚀 Running {step_name}...")
-            result = module.main(config)
+            
+            # Check function signature
+            import inspect
+            sig = inspect.signature(module.main)
+            if len(sig.parameters) > 0:
+                result = module.main(config)
+            else:
+                result = module.main()
+
             if verbose:
                 print(f"✅ {step_name} completed successfully")
             return result

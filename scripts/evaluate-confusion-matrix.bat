@@ -131,7 +131,7 @@ echo   • Other (General or unclear conditions)
 echo.
 
 REM Run confusion matrix evaluation
-python scripts\Main_9_Confusion_Matrix_Evaluation.py --model-path %MODEL_PATH%
+python src\ml_pipeline\evaluate_confusion_matrix.py --model-path %MODEL_PATH%
 
 if errorlevel 1 (
     echo.

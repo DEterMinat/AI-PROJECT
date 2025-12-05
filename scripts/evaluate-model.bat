@@ -109,7 +109,7 @@ echo ===========================================================================
 echo.
 
 REM Run evaluation
-python scripts\Main_9_FLAN_T5_Evaluation.py --model-path %MODEL_PATH%
+python src\ml_pipeline\evaluate_flan_t5.py --model-path %MODEL_PATH%
 
 if errorlevel 1 (
     echo.

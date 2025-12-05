@@ -225,7 +225,7 @@ class ModelMonitor:
         # In production, this would trigger a retraining pipeline
         # For now, just log the event
         logger.info("✅ Retraining trigger saved")
-        logger.info("💡 Manual action: Run Main_8_Model_Training.py to retrain")
+        logger.info("💡 Manual action: Run train_t5.py to retrain")
         
         return True
     

@@ -1,4 +1,5 @@
 @echo off
+cd /d "%~dp0"
 title Start Complete Medical AI System
 color 0E
 
@@ -31,14 +32,39 @@ echo.
 
 REM Step 2: Check Python environment
 echo [Step 2/3] Checking Python environment...
+
+REM Try to add Conda to PATH if not present
+where conda >nul 2>&1
+if %errorlevel% neq 0 (
+    if exist "C:\Users\tanak\anaconda3\Scripts\conda.exe" (
+        set "PATH=%PATH%;C:\Users\tanak\anaconda3;C:\Users\tanak\anaconda3\Scripts;C:\Users\tanak\anaconda3\Library\bin"
+    )
+)
+
+call conda activate .\.conda >nul 2>&1
+if %errorlevel% neq 0 (
+    if exist "C:\Users\tanak\anaconda3\Scripts\activate.bat" (
+        call "C:\Users\tanak\anaconda3\Scripts\activate.bat" "%~dp0.conda" >nul 2>&1
+    )
+)
+
+REM Check if activation was successful (python should point to conda env)
+python -c "import sys; exit(0 if '.conda' in sys.prefix or 'medical-ai' in sys.prefix else 1)" >nul 2>&1
+if %errorlevel% equ 0 (
+    echo [OK] Conda environment '.conda' active
+    goto :CHECK_MODEL
+)
+
 if not exist ".venv\Scripts\python.exe" (
     echo [ERROR] Python virtual environment not found!
-    echo Please create it first: python -m venv .venv
+    echo Please run SETUP_CONDA.bat
     pause
     exit /b 1
 )
 echo [OK] Python environment ready
 echo.
+
+:CHECK_MODEL
 
 REM Step 3: Check T5 Model
 echo [Step 3/3] Checking T5-Small model...

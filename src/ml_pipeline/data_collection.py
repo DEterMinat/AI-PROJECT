@@ -259,3 +259,10 @@ if __name__ == "__main__":
         print(f"\\n💥 Fatal error: {e}")
         print(f"Traceback: {traceback.format_exc()}")
         sys.exit(1)
+
+def main(config=None):
+    "Main execution function"
+    return download_medical_datasets()
+
+if __name__ == "__main__":
+    main()

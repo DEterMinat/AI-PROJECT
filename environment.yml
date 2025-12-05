@@ -1,0 +1,32 @@
+name: medical-ai
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.10
+  - pip
+  - fastapi
+  - uvicorn
+  - pydantic
+  - pydantic-settings
+  - pandas
+  - numpy
+  - requests
+  - python-dotenv
+  - tqdm
+  - python-multipart
+  - jinja2
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - pytorch
+  - transformers
+  - accelerate
+  - sentence-transformers
+  - chromadb
+  - pip:
+    - langchain
+    - langchain-community
+    - langchain-core
+    - langsmith
+    - reportlab

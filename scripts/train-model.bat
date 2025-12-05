@@ -94,7 +94,7 @@ if not exist "data\model_ready\train_20251007_235239.json" (
     echo Expected: data\model_ready\train_20251007_235239.json
     echo.
     echo Please run data preparation first:
-    echo   python scripts\Main_6_Data_Splitting.py
+    echo   python src\ml_pipeline\data_splitting.py
     pause
     exit /b 1
 )
@@ -142,7 +142,7 @@ echo ===========================================================================
 echo.
 
 REM Run training with LARGE dataset (111,349 samples)
-python scripts\Main_8_Train_FLAN_T5_Medical.py ^
+python src\ml_pipeline\train_flan_t5.py ^
     --train data\model_ready\train_20251007_235239.json ^
     --val data\model_ready\val_20251007_235239.json ^
     --test data\model_ready\test_20251007_235239.json ^
