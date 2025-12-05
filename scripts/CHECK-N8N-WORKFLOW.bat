@@ -28,9 +28,10 @@ echo.
 
 REM ตรวจสอบไฟล์ Workflow
 echo 📁 Checking workflow file...
-if exist "d:\AI-PROJECT\n8n\medical_qa_workflow_complete.json" (
+set "PROJECT_ROOT=%~dp0.."
+if exist "%PROJECT_ROOT%\n8n\medical_qa_workflow_complete.json" (
     echo ✅ Workflow file exists: medical_qa_workflow_complete.json
-    powershell -Command "(Get-Content 'd:\AI-PROJECT\n8n\medical_qa_workflow_complete.json' | ConvertFrom-Json).nodes | ForEach-Object { Write-Host '  - Node:' $_.name '(' $_.type ')' }"
+    powershell -Command "(Get-Content '%PROJECT_ROOT%\n8n\medical_qa_workflow_complete.json' | ConvertFrom-Json).nodes | ForEach-Object { Write-Host '  - Node:' $_.name '(' $_.type ')' }"
 ) else (
     echo ❌ Workflow file NOT found!
 )

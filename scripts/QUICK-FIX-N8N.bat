@@ -28,7 +28,8 @@ echo.
 
 echo Step 3: Open workflow file location
 echo Opening folder...
-start explorer "d:\AI-PROJECT\n8n"
+set "PROJECT_ROOT=%~dp0.."
+start explorer "%PROJECT_ROOT%\n8n"
 timeout /t 2 >nul
 echo.
 
